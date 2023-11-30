@@ -1,6 +1,6 @@
 import Todo from "./Todo";
 
-export const Todos = ({ todos, removeTodo, updateTodo }) => {
+const Todos = ({ todos, removeTodo, updateTodo }) => {
   return (
     <ul className="list-group mt-5">
       {todos.map((todo) => (
@@ -22,3 +22,5 @@ export const Todos = ({ todos, removeTodo, updateTodo }) => {
     </ul>
   );
 };
+
+export default Todos;
