@@ -1,6 +1,8 @@
 import Todo from "./Todo";
 
 const Todos = ({ todos, removeTodo, updateTodo }) => {
+  if (!todos) return <p>Cargando todos...</p>;
+
   return (
     <ul className="list-group mt-5">
       {todos.map((todo) => (
