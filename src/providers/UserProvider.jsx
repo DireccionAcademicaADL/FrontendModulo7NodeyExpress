@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
 
-// const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const initialStateToken = localStorage.getItem("token") || null;
 
@@ -18,7 +18,7 @@ const UserProvider = ({ children }) => {
   }, [token]);
 
   const loginWithEmailAndPassword = async (email, password) => {
-    const response = await fetch("http://localhost:5000/users/login", {
+    const response = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -31,7 +31,7 @@ const UserProvider = ({ children }) => {
   };
 
   const registerWithEmailAndPassword = async (email, password) => {
-    const response = await fetch("http://localhost:5000/users/register", {
+    const response = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
