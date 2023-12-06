@@ -4,6 +4,8 @@ import TodoForm from "../components/TodoForm";
 import Todos from "../components/Todos";
 import { UserContext } from "../providers/UserProvider";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 // const BASE_URL = import.meta.env.VITE_BASE_URL;
 const HomePage = () => {
   const { token } = useContext(UserContext);
@@ -18,7 +20,7 @@ const HomePage = () => {
 
   const getTodos = async (page = 1, order = "asc", limit = 5) => {
     const response = await fetch(
-      `http://localhost:5000/todos?page=${page}&limit=${limit}&order=${order}`,
+      `${BASE_URL}?page=${page}&limit=${limit}&order=${order}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -40,7 +42,7 @@ const HomePage = () => {
   }, [page, order]);
 
   const addTodo = async (title) => {
-    const response = await fetch(`http://localhost:5000/todos`, {
+    const response = await fetch(`${BASE_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +58,7 @@ const HomePage = () => {
   };
 
   const removeTodo = async (id) => {
-    const response = await fetch(`http://localhost:5000/todos/${id}`, {
+    const response = await fetch(`${BASE_URL}/todos/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -69,7 +71,7 @@ const HomePage = () => {
   };
 
   const updateTodo = async (id) => {
-    const response = await fetch(`http://localhost:5000/todos/${id}`, {
+    const response = await fetch(`${BASE_URL}/todos/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
