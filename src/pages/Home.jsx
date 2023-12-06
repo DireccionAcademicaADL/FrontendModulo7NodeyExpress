@@ -6,7 +6,6 @@ import { UserContext } from "../providers/UserProvider";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-// const BASE_URL = import.meta.env.VITE_BASE_URL;
 const HomePage = () => {
   const { token } = useContext(UserContext);
 
