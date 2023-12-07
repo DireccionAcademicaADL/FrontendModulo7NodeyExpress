@@ -10,6 +10,7 @@ const HomePage = () => {
   const { token } = useContext(UserContext);
 
   const [todos, setTodos] = useState([]);
+  console.log(todos);
 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -19,7 +20,7 @@ const HomePage = () => {
 
   const getTodos = async (page = 1, order = "asc", limit = 5) => {
     const response = await fetch(
-      `${BASE_URL}?page=${page}&limit=${limit}&order=${order}`,
+      `${BASE_URL}/todos?page=${page}&limit=${limit}&order=${order}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -41,7 +42,7 @@ const HomePage = () => {
   }, [page, order]);
 
   const addTodo = async (title) => {
-    const response = await fetch(`${BASE_URL}`, {
+    const response = await fetch(`${BASE_URL}/todos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +85,7 @@ const HomePage = () => {
 
   return (
     <div className="container">
-      <h1 className="my-5">Todos APP</h1>
+      <h1 className="">Todos APP</h1>
       <TodoForm addTodo={addTodo} />
       <Todos todos={todos} removeTodo={removeTodo} updateTodo={updateTodo} />
       <TodoFooter
